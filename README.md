@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 # Wolf & Chicken Coop
 # Author: Joanna Kołaczek
-=======
-# Game Title
-## Author:
->>>>>>> c299031885bec7f6c3cd4110ae279b6b6b547b00
 
 ### Short description
 
