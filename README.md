@@ -1,5 +1,5 @@
-# Game Title
-## Author: Anna Szymanek
+# Wolf & Chicken Coop
+# Author: Joanna Kołaczek
 
 ### Short description
 
