@@ -401,7 +401,7 @@ pygame.display.set_caption('Wolf & Chicken cops')
 clock=pygame.time.Clock()
 
 music=pygame.mixer.music.load(generate_soundtrack)
-pygame.mixer.music.set_volume(0.01)
+pygame.mixer.music.set_volume(0.02)
 pygame.mixer.music.play(-1)
 
 beep=pygame.mixer.Sound('muza/cursor.wav')
