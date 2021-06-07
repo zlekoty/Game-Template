@@ -56,12 +56,14 @@ e2=pygame.image.load('obrazki/UL_2.png')
 e3=pygame.image.load('obrazki/UR_3.png')
 e4=pygame.image.load('obrazki/UL_4.png')
 e5=pygame.image.load('obrazki/UL_5.png')
+eT=pygame.image.load('obrazki/toxic.png')
 
 egg_1=pygame.transform.scale(e1,(60,60))
 egg_2=pygame.transform.scale(e2,(60,60))
 egg_3=pygame.transform.scale(e3,(60,60))
 egg_4=pygame.transform.scale(e4,(60,60))
 egg_5=pygame.transform.scale(e5,(60,60))
+egg_toxic=pygame.transform.scale(eT,(50,50))
 
 #MUSIC
 generate_soundtrack=random.choice(['muza/music1.mp3','muza/music2.mp3','muza/music3.mp3','muza/music4.mp3'])
@@ -83,6 +85,8 @@ lives=3
 first_pos=0
 
 end_game=False
+toxic_egg=False
+
 
 
 name='Username: (press any key to add)'
@@ -173,223 +177,114 @@ class Eggs(pygame.sprite.Sprite):
         self.image=void
         self.rect=self.image.get_rect()
         self.rect.center=(100,100)
-
-        self.updated_UL1=False
-        self.updated_UL2=False
-        self.updated_UL3=False
-        self.updated_UL4=False
-        self.updated_UL_phantom=False
-
-        self.updated_DL1=False
-        self.updated_DL2=False
-        self.updated_DL3=False
-        self.updated_DL4=False
-        self.updated_DL_phantom=False
-
-        self.updated_UR1=False
-        self.updated_UR2=False
-        self.updated_UR3=False
-        self.updated_UR4=False
-        self.updated_UR_phantom=False
-
-        self.updated_DR1=False
-        self.updated_DR2=False
-        self.updated_DR3=False
-        self.updated_DR4=False
-        self.updated_DR_phantom=False
+        self.positions=[]
+        self.toxic_egg_pos=0
+        self.updated_egg=False
+        self.updated_toxic=False
         
     def update(self):
-        #upper-left egg
-        #print(first_pos)
+        #normal eggs (all corners)
+            #drawn positions
         if first_pos==1:
-            self.image=egg_1
-            self.rect.center=(100,100)
-            self.updated_UL1=True
-            egg_sound1.play()
-
-        if self.updated_UL1==True and n==n_copied-1*n_mod:
-            self.image=egg_2
-            self.rect.center=(150,125)
-            self.updated_UL1=False
-            self.updated_UL2=True
-            egg_sound2.play()
-            
-        if self.updated_UL2==True and n==n_copied-2*n_mod:
-            self.image=egg_3
-            self.rect.center=(190,170)
-            self.updated_UL2=False
-            self.updated_UL3=True
-            egg_sound3.play()
-            
-        if self.updated_UL3==True and n==n_copied-3*n_mod:
-            self.image=egg_4
-            self.rect.center=(230,200)
-            self.updated_UL3=False
-            self.updated_UL4=True
-            egg_sound4.play()
-            
-        if self.updated_UL4==True and n==n_copied-4*n_mod:
-            self.image=egg_5
-            self.rect.center=(275,220)
-            self.updated_UL4=False
-            self.updated_UL_phantom=True
-            egg_sound5.play()
-
-        if self.updated_UL_phantom==True and n==1:
-            self.image=void
-            self.rect.center=(0,0)
-            self.updated_UL_phantom=False
-            
-        #down-left egg
+            self.positions=[(100,100),(150,125),(190,170),(230,200),(275,220),(0,0)]
+            print(self.positions)
+            self.updated_egg=True
         if first_pos==2:
-            self.image=egg_1
-            self.rect.center=(75,325)
-            self.updated_DL1=True
-            egg_sound1.play()
-            
-        if self.updated_DL1==True and n==n_copied-1*n_mod:
-            self.image=egg_2
-            self.rect.center=(140,325)
-            self.updated_DL1=False
-            self.updated_DL2=True
-            egg_sound2.play()
-            
-        if self.updated_DL2==True and n==n_copied-2*n_mod:
-            self.image=egg_3
-            self.rect.center=(175,325)
-            self.updated_DL2=False
-            self.updated_DL3=True
-            egg_sound3.play()
-            
-        if self.updated_DL3==True and n==n_copied-3*n_mod:
-            self.image=egg_4
-            self.rect.center=(215,315)
-            self.updated_DL3=False
-            self.updated_DL4=True
-            egg_sound4.play()
-            
-        if self.updated_DL4==True and n==n_copied-4*n_mod:
-            self.image=egg_5
-            self.rect.center=(260,320)
-            self.updated_DL4=False
-            self.updated_DL_phantom=True
-            egg_sound5.play()
-
-        if self.updated_DL_phantom==True and n==1:
-            self.image=void
-            self.rect.center=(0,HEIGHT)
-            self.updated_DL_phantom=False
-            
-        #upper-right egg
+            self.positions=[(75,325),(140,325),(175,325),(215,315),(260,320),(0,HEIGHT)]
+            print(self.positions)
+            self.updated_egg=True
         if first_pos==3:
-            self.image=egg_2
-            self.rect.center=(700,100)
-            self.updated_UR1=True
-            egg_sound1.play()
-
-        if self.updated_UR1==True and n==n_copied-1*n_mod:
-            self.image=egg_1
-            self.rect.center=(675,125)
-            self.updated_UR1=False
-            self.updated_UR2=True
-            egg_sound2.play()
-            
-        if self.updated_UR2==True and n==n_copied-2*n_mod:
-            self.image=egg_3
-            self.rect.center=(625,160)
-            self.updated_UR2=False
-            self.updated_UR3=True
-            egg_sound3.play()
-            
-        if self.updated_UR3==True and n==n_copied-3*n_mod:
-            self.image=egg_4
-            self.rect.center=(600,180)
-            self.updated_UR3=False
-            self.updated_UR4=True
-            egg_sound4.play()
-            
-        if self.updated_UR4==True and n==n_copied-4*n_mod:
-            self.image=egg_5
-            self.rect.center=(575,195)
-            self.updated_UR4=False
-            self.updated_UR_phantom=True
-            egg_sound5.play()
-            
-        if self.updated_UR_phantom==True and n==1:
-            self.image=void
-            self.rect.center=(WIDTH,0)
-            self.updated_UR_phantom=False
-
-        #down-right egg
+            self.positions=[(700,100),(675,125),(625,160),(600,180),(575,195),(WIDTH,0)]
+            print(self.positions)
+            self.updated_egg=True
         if first_pos==4:
+            self.positions=[(720,350),(670,335),(625,325),(580,315),(550,305),(WIDTH,HEIGHT)]
+            print(self.positions)
+            self.updated_egg=True
+
+            #positions displaing
+        if self.updated_egg==True and n==n_copied:
             self.image=egg_1
-            self.rect.center=(720,350)
-            self.updated_DR1=True
+            self.rect.center=self.positions[0]
             egg_sound1.play()
             
-        if self.updated_DR1==True and n==n_copied-1*n_mod:
+        if self.updated_egg==True and n==n_copied-1*n_mod:
             self.image=egg_2
-            self.rect.center=(670,335)
-            self.updated_DR1=False
-            self.updated_DR2=True
+            self.rect.center=self.positions[1]
             egg_sound2.play()
             
-        if self.updated_DR2==True and n==n_copied-2*n_mod:
+        if self.updated_egg==True and n==n_copied-2*n_mod:
             self.image=egg_3
-            self.rect.center=(625,325)
-            self.updated_DR2=False
-            self.updated_DR3=True
+            self.rect.center=self.positions[2]
             egg_sound3.play()
             
-        if self.updated_DR3==True and n==n_copied-3*n_mod:
+        if self.updated_egg==True and n==n_copied-3*n_mod:
             self.image=egg_4
-            self.rect.center=(580,315)
-            self.updated_DR3=False
-            self.updated_DR4=True
+            self.rect.center=self.positions[3]
             egg_sound4.play()
             
-        if self.updated_DR4==True and n==n_copied-4*n_mod:
+        if self.updated_egg==True and n==n_copied-4*n_mod:
             self.image=egg_5
-            self.rect.center=(550,305)
-            self.updated_DR4=False
-            self.updated_DR_phantom=True
+            self.rect.center=self.positions[4]
             egg_sound5.play()
             
-        if self.updated_DR_phantom==True and n==1:
+        if self.updated_egg==True and n==1:
             self.image=void
-            self.rect.center=(WIDTH,HEIGHT)
-            self.updated_DR_phantom=False
+            self.rect.center=self.positions[5]
+            self.updated_egg=False
+
+        
+        #toxic egg
+        if first_pos==5:
+            self.image=egg_toxic
+            self.toxic_egg_pos=random.choice([1,2,3,4])
+            self.updated_toxic=True
+
+            #drawn positions
+        if self.toxic_egg_pos==1:
+            self.positions=[(100,100),(150,125),(190,170),(230,200),(275,220),(0,0)]
+        if self.toxic_egg_pos==2:
+            self.positions=[(75,325),(140,325),(175,325),(215,315),(260,320),(0,HEIGHT)]
+        if self.toxic_egg_pos==3:
+            self.positions=[(700,100),(675,125),(625,160),(600,180),(575,195),(WIDTH,0)]
+        if self.toxic_egg_pos==4:
+            self.positions=[(720,350),(670,335),(625,325),(580,315),(550,305),(WIDTH,HEIGHT)]
+        
+            #positions displaing
+        if self.updated_toxic==True and n==n_copied:
+            self.rect.center=self.positions[0]
+            egg_sound1.play()
+            
+        if self.updated_toxic==True and n==n_copied-1*n_mod:
+            self.rect.center=self.positions[1]
+            egg_sound2.play()            
+
+        if self.updated_toxic==True and n==n_copied-2*n_mod:
+            self.rect.center=self.positions[2]
+            egg_sound3.play()
+            
+        if self.updated_toxic==True and n==n_copied-3*n_mod:
+            self.rect.center=self.positions[3]
+            egg_sound4.play()
+            
+        if self.updated_toxic==True and n==n_copied-4*n_mod:
+            self.rect.center=self.positions[4]
+            egg_sound5.play()
+            
+        if self.updated_toxic==True and n==1:
+            self.image=void
+            self.rect.center=self.positions[5]
+            self.toxic_egg_pos=0
+            self.updated_toxic=False
+        
 
         if end_game==True:
             self.image=void
             self.rect=self.image.get_rect()
             self.rect.center=(100,100)
 
-            self.updated_UL1=False
-            self.updated_UL2=False
-            self.updated_UL3=False
-            self.updated_UL4=False
-            self.updated_UL_phantom=False
-
-            self.updated_DL1=False
-            self.updated_DL2=False
-            self.updated_DL3=False
-            self.updated_DL4=False
-            self.updated_DL_phantom=False
-
-            self.updated_UR1=False
-            self.updated_UR2=False
-            self.updated_UR3=False
-            self.updated_UR4=False
-            self.updated_UR_phantom=False
-
-            self.updated_DR1=False
-            self.updated_DR2=False
-            self.updated_DR3=False
-            self.updated_DR4=False
-            self.updated_DR_phantom=False
-            
-            
+            self.updated_egg=False
+            self.updated_toxic=False
 
 
 
@@ -552,6 +447,7 @@ def game_loop():
     global score
     global lives
     global end_game
+    global toxic_egg
     
     beep_play=0
    
@@ -570,7 +466,7 @@ def game_loop():
                 first_pos=0
                 running=False
                 
-        #timer1
+        #time & speed
         if n>1:
             n-=1
             first_pos=0
@@ -578,7 +474,12 @@ def game_loop():
         else:
             n_copied=speed[i]
             n=n_copied
-            first_pos=random.choice([1,2,3,4])
+            first_pos=random.choice([1,2,3,4,5])
+            if first_pos==5:
+                toxic_egg=True
+            else:
+                toxic_egg=False
+            print(first_pos)
             n_mod=int(n_copied/5)
             j+=1
             if j%3==0 and i<22:
@@ -589,14 +490,20 @@ def game_loop():
         all_sprites.update()
         eggs.update()
         
-        #score&lives
+        #score & lives
         if pygame.sprite.spritecollide(phantomwolf,eggs,False):
-            score+=1
-            collect.play()
-        if n==1 and not pygame.sprite.spritecollide(phantomwolf,eggs,False):
-            lives-=1
-            if lives!=2:
+            print(toxic_egg)
+            if toxic_egg==True:
+                lives=-1
                 egg_cracking.play()
+            else:
+                score+=1
+                collect.play()
+        if n==1 and not pygame.sprite.spritecollide(phantomwolf,eggs,False):
+            if toxic_egg==False:
+                lives-=1
+                if lives!=2:
+                    egg_cracking.play()
         if lives==2 or lives==3:
             screen.blit(lives_3,(390,475))
         if lives==1:
