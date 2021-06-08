@@ -9,7 +9,7 @@ My interpretation of russian console game - "Ну, погоди!"
 ### Technologies
 Python - interpreted, object-oriented, high-level programming language with dynamic semantics
 
-Pygame - a set of Python modules designed for writing video games. 
+Pygame - a set of Python modules designed for writing video games
 
 
 ### How to run this app?
