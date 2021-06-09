@@ -5,6 +5,9 @@
 
 My interpretation of russian console game - "Ну, погоди!"
 
+![MENU](https://user-images.githubusercontent.com/77397198/121373924-c333b300-c93f-11eb-97ad-5383485ebbc3.png)
+![SCREEN](https://user-images.githubusercontent.com/77397198/121373991-cf1f7500-c93f-11eb-9f39-f99451e522d4.png)
+
 
 ### Technologies
 Python - interpreted, object-oriented, high-level programming language with dynamic semantics
